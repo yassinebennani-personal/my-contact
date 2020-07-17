@@ -1,0 +1,8 @@
+POST http://localhost:3000/email/send
+Content-Type: "application/x-www-form-urlencoded"
+
+{
+    "name": "LAHNA Sanaa",
+    "subject": "Demande de contact pour une mission",
+    "content": "Salut Yassine"
+}
