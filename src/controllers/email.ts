@@ -5,7 +5,6 @@ var sbSdk = require('sib-api-v3-sdk');
 
 export class EmailController {
   public sendGrid(req: Request, res: Response) {
-      console.log(req.body);
       sgMail.setApiKey('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');
       const msg = {
         to: 'yassinebennani@outlook.com',
@@ -32,9 +31,13 @@ export class EmailController {
     // Configure API key authorization: api-key
     var apiKey = client.authentications['api-key'];
     apiKey.apiKey = "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"
-    console.log(req.body);
 
     var sbMail = new sbSdk.SMTPApi();
+    console.log('origin', req.get('origin'));
+    console.log('host', req.get('host'));
+    console.log('originUrl', req.originalUrl);
+    console.log('host2', req.host);
+    console.log('hostname', req.hostname);
     const msg = {
       to: [
         {
@@ -52,8 +55,10 @@ export class EmailController {
     //ES6
     sbMail.sendTransacEmail(msg).then(function(data) {
       console.log('API called successfully. Returned data: ' + data);
+      res.send('OK');
     }, function(error) {
       console.error(error);
+      res.send('KO');
     });
   }
 }
