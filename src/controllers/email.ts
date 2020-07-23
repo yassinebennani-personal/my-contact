@@ -39,12 +39,6 @@ export class EmailController {
     apiKey.apiKey = "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"
 
     var sbMail = new sbSdk.SMTPApi();
-    console.log('origin', req.get('origin'));
-    
-    console.log('host', req.get('host'));
-    console.log('originUrl', req.originalUrl);
-    console.log('host2', req.host);
-    console.log('hostname', req.hostname);
     const msg = {
       to: [
         {
