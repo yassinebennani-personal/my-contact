@@ -26,6 +26,12 @@ export class EmailController {
   }
 
   public sendBlue(req: Request, res: Response) {
+    
+    if(!req.get('origin').endsWith('yassinebennani.com')) {
+      res.status(400).send('KO');
+      return;
+    }
+
     var client = sbSdk.ApiClient.instance;
 
     // Configure API key authorization: api-key
@@ -34,6 +40,7 @@ export class EmailController {
 
     var sbMail = new sbSdk.SMTPApi();
     console.log('origin', req.get('origin'));
+    
     console.log('host', req.get('host'));
     console.log('originUrl', req.originalUrl);
     console.log('host2', req.host);
@@ -55,7 +62,7 @@ export class EmailController {
     //ES6
     sbMail.sendTransacEmail(msg).then(function(data) {
       console.log('API called successfully');
-      res.send('OK');
+      res.status(200).send('OK');
     }, function(error) {
       console.error(error);
       res.status(400).send('KO');
