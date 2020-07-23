@@ -54,11 +54,11 @@ export class EmailController {
     };
     //ES6
     sbMail.sendTransacEmail(msg).then(function(data) {
-      console.log('API called successfully. Returned data: ' + data);
+      console.log('API called successfully');
       res.send('OK');
     }, function(error) {
       console.error(error);
-      res.send('KO');
+      res.status(400).send('KO');
     });
   }
 }
