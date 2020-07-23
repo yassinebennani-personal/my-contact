@@ -17,6 +17,11 @@ class App {
   }
 
   private configure(): void {
+    this.app.use(function (req, res, next) {
+      res.setHeader('Access-Control-Allow-Origin', 'https://www.yassinebennani.com');
+      res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+      next();
+    });
     this.app.use(bodyParser.urlencoded({ extended: false }));
     this.app.use(bodyParser.json());
   }
